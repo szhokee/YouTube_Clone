@@ -110,11 +110,11 @@ def add_new_like(request, id):
     # if Destiny > [Desphixs Subscribers]
     if user in video.likes.all():
         video.likes.remove(user)
-        like_response = "Like"
+        like_response = '<i class="fa fa-thumbs-up"></i>'
         return JsonResponse(like_response, safe=False, status=200)
     else:
         video.likes.add(user)
-        like_response = "Dislike"
+        like_response = '<i class="fa fa-thumbs-up"></i>'
         return JsonResponse(like_response, safe=False, status=200)
 
 def load_video_likes(request, id):

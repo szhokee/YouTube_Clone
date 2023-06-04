@@ -24,6 +24,12 @@ urlpatterns = [
     # Edit Video URL
     path("channel/edit-video/<channel_id>/<video_id>/", views.video_edit, name="video-edit"),
 
+
+  # Delete Video URL
+    path("channel/delete-video/<video_id>/", views.video_delete, name="video-delete"),
+
+
+
     # Create Communiy POSt URL
     path("channel/create-community-post/<channel_id>/", views.create_community_post, name="create-post"),
 

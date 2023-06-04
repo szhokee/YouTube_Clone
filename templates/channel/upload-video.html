@@ -50,7 +50,8 @@
                         <!-- <input type="file" class="file"> -->
                         <!-- <input type='file'> -->
                         <span class='button'><i class="material-icons">image</i></span>
-                        <span class='label' data-js-label>No image selected</label>
+                        <span class='label' data-js-label>No image selected</label> <br>
+                        <img src="{{ video.image.url }}" style="width: 100%;" alt="">
                         
                     </div>
                     
@@ -62,8 +63,15 @@
                         <!-- <input type='file'> -->
                         <span class='button'><i class="material-icons">videocam</i></span>
                         <span class='label' data-js-label>No video selected</label>
-                        
-                    </div>
+                        </div>
+                        {% if video.video.url %}
+                        <div class="video-div file-input">
+                            <span><small style="color: black;">Existing Video</small></span>
+                        <video style="width: 100%;" controls>
+                            <source style="width: 100%;" type="video/mp4" src="{{ video.video.url }}">
+                        </video>
+                        </div>
+                        {% endif %}
 
                     <div class="video-div file-input">
                         <small>visibility (required) </small> <br>

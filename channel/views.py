@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from channel.models import Channel, Community, CommunityComment
 from core.models import Video
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from channel.forms import VideoForm, CommunityForm
 
@@ -124,7 +124,7 @@ def video_upload(request):
             new_form.save()
             form.save_m2m()
             messages.success(request, f"Video Uploaded Successfully.")
-            return redirect("channel-profile", user.channel.id)
+            return redirect("studio")
     else:
         form = VideoForm()
     context = {
@@ -149,13 +149,27 @@ def video_edit(request, channel_id, video_id):
             new_form.save()
             form.save_m2m()
             messages.success(request, f"Video Edited Successfully.")
-            return redirect("channel-profile", user.channel.id)
+            return redirect("studio")
     else:
         form = VideoForm(instance=video)
     context = {
         "form":form,
+        "video":video,
     }
     return render(request, "channel/upload-video.html", context)
+
+
+@login_required
+def video_delete(request, video_id):
+    video = Video.objects.get(id=video_id)
+    user = request.user
+
+    if request.user == video.user:
+        video.delete()
+        return redirect("studio")
+    else:
+        return HttpResponse("You are not allowed to delete this video")
+
 
 
 @login_required

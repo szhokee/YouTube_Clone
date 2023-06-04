@@ -4,6 +4,14 @@
 
 {% block content %}
 
+<head>
+    <style>
+        .comment-class:focus{
+            outline: none;
+    }
+    </style>
+</head>
+
 <div class="mainBody">
     {% include 'partials/sidebar.html' %}
 
@@ -83,13 +91,13 @@
                         <!-- Create Comment Section -->
                         <div class="create-comment">
                             <div class="create-comment-img">
-                                <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg" alt="">
+                                <!-- <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg" alt=""> -->
                             </div>
                             <!-- Comment Form -->
                             <form action="{% url 'community-create-comment' community.id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="create-comment-input">
-                                    <input name="comment" id="comment" type="text" placeholder="Add a comment">
+                                    <input class="comment-class" name="comment" id="comment" type="text" placeholder="Add a comment">
                                     <button type="submit"><i class="material-icons">send</i></button>
                                 </div>
                             </form>
@@ -101,7 +109,7 @@
                         <div class="comment-wrap">
                             <div class="comments">
                                 <div class="comment-img">
-                                    <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg" alt="">
+                                    <!-- <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg" alt=""> -->
                                 </div>
                                 <div class="comment-content">
                                     <div class="comment-header">
@@ -109,7 +117,7 @@
                                         <p><small>{{c.date|timesince}} ago</small></p>
                                     </div>
                                     <p>{{ c.comment }}</p>
-                                    <div class="comment-icons">
+                                    <!-- <div class="comment-icons">
                                         <div class="comment-icon-single">
                                             <i class="material-icons">thumb_up</i>
                                             <span>2</span>
@@ -120,7 +128,7 @@
                                         <div class="comment-icon-single">
                                             <span>Reply</span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="delete-comment">
